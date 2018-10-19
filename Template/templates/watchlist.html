@@ -3,22 +3,30 @@
 <head>
     <meta charset="utf-8">
 
-{#    Display username in the proper place#}
-    <title>{{ """Display username here""" }}'s Watchlist</title>
+    {#    Display username in the proper place#}
+    <title>{{ user.username }}'s Watchlist</title>
 
 </head>
 <body>
 
 {#Fix the Return button below#}
-<a href="">&larr; Return</a>
+<a href="{{ url_for('index') }}">&larr; Return</a>
 
-<h2>{{ """Display username here""" }}</h2>
+<h2>{{ user.username }}</h2>
 
 {#Display user's biography according to the requirement in app.py(use if)#}
+{% if user.bio %}
+    <i>{{ user.bio }}</i>
+{% else %}
+    <i>This user has not provided a bio.</i>
+{% endif %}
 
-<h5>{{ """Display username here""" }}'s Watchlist ({{ """Display the length of watchlist""" }}):</h5>
+<h5>{{ user.username }}'s Watchlist ({{ movies|length }}):</h5>
 <ul>
-{#    Display all the movies in watchlist#}
+    {#    Display all the movies in watchlist#}
+    {% for movie in movies %}
+        <li>{{ movie.name }} - {{ movie.year }}</li>
+    {% endfor %}
 </ul>
 </body>
 </html>
