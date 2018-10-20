@@ -1,9 +1,9 @@
-{#{% extends 'base.html' %}#}
+{% extends 'base.html' %}
 
 {% block content %}
     <h1>Index</h1>
     <ul>
-        <li><a href="{{"""Fix hyperlink here"""}}">Watchlist</a></li>
-        <li><a href="{{"""Fix hyperlink here, redirect to /watchlist_with_static"""}}">Watchlist with image and styles.</a></li>
+        <li><a href="{{ url_for('watchlist') }}">Watchlist</a></li>
+        <li><a href="{{ url_for('watchlist_with_static') }}">Watchlist with image and styles.</a></li>
     </ul>
 {% endblock %}

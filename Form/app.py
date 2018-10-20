@@ -24,7 +24,10 @@ app.jinja_env.lstrip_blocks = True
 
 # Basic Form
 class LoginForm(FlaskForm):
-    pass
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired(), Length(8, 20)])
+    remember = BooleanField('Remember me')
+    submit = SubmitField('Log in')
 
 
 @app.route('/', methods=['GET', 'POST'])

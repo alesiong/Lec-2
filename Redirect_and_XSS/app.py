@@ -8,6 +8,8 @@ Task 1:
     d.  Fix this XSS loophole in hello().
     optional:   Design your own set_cookie and corresponding view functions by referring the following programs.
 """
+
+from jinja2 import escape
 from flask import Flask, request, make_response, redirect, url_for
 
 app = Flask(__name__)
@@ -32,9 +34,10 @@ def hello():
     name = request.args.get('name')
     if name is None:
         name = request.cookies.get('name', 'Human')
-    response = '<h1>Hello, %s!</h1>' % name
+    response = '<h1>Hello, %s!</h1>' % escape(name)
     return response
 
 
+@app.route('hi')
 def hi():
-    pass
+    return redirect(url_for('hello'))
